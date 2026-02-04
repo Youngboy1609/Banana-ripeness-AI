@@ -1,0 +1,8 @@
+checkpoint_path: models/checkpoints/best.pth
+camera_index: 0
+roi_scale: 0.6
+smoothing_window: 8
+conf_threshold_defect: 0.6
+conf_threshold_ripeness: 0.5
+img_size: 224
+data_config: configs/data.yaml

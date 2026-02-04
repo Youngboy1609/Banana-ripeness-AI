@@ -1,0 +1,32 @@
+model_name: efficientnet_b1
+pretrained: true
+img_size: 224 # Reduced from 240 to save memory
+batch_size: 8 # Reduced from 16 to save memory
+epochs: 20
+lr: 0.0003
+weight_decay: 0.01
+patience: 7
+lambda_defect: 2.0
+use_amp: true
+num_workers: 0
+use_class_weights: true
+use_defect_pos_weight: true
+data_config: configs/data.yaml
+best_metric: sum_f1
+augment:
+  random_resized_crop:
+    scale_min: 0.5
+    scale_max: 1.0
+  hflip: true
+  rotation: 15
+  perspective_prob: 0.2
+  color_jitter:
+    brightness: 0.3
+    contrast: 0.3
+    saturation: 0.3
+    hue: 0.1
+  grayscale_prob: 0.1
+  blur_prob: 0.2
+  random_erasing_prob: 0.3
+  random_erasing_scale_min: 0.02
+  random_erasing_scale_max: 0.2

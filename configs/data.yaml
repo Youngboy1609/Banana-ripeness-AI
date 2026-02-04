@@ -1,0 +1,55 @@
+task_mode: multitask
+datasets:
+  - bananaimagebd/BananaImageBD A Comprehensive Image Dataset of Common Banana Varieties with Different Ripeness Stages in Bangladesh/Banana Ripeness Detection Dataset
+  - bananaimagebd/BananaImageBD A Comprehensive Image Dataset of Common Banana Varieties with Different Ripeness Stages in Bangladesh/Augmented Banana Ripeness Detection Dataset
+  - kaggle_banana_classification
+  - kaggle_banana_ripeness_13478
+classes_ripeness:
+  - green
+  - semi_ripe
+  - ripe
+  - overripe
+classes_defect:
+  - good
+  - defective
+class_map_ripeness:
+  green: green
+  unripe: green
+  semi_ripe: semi_ripe
+  ripe: ripe
+  overripe: overripe
+defect_rules:
+  defective_class_names:
+    - rotten
+    - defective
+splits:
+  train: 0.8
+  val: 0.1
+  test: 0.1
+seed: 42
+preprocess:
+  dedupe: true
+  min_size: 0
+  prefer_non_augmented: true
+  near_duplicate:
+    enabled: true
+    action: remove_then_group
+    scope: global
+    threshold: 5
+    group_threshold: 7
+    ahash_threshold: 8
+    dhash_threshold: 8
+    group_ahash_threshold: 12
+    group_dhash_threshold: 12
+    sources: []
+    prefer_source: kaggle_banana_classification
+    remove_within_source: true
+split_balance:
+  enabled: true
+  strategy: stratified_group
+  label: multitask
+  respect_split_hint: false
+  group_total_weight: 0.1
+split_freeze:
+  enabled: true
+  hash_file: data/processed/frozen_test_hashes.txt
